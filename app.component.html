@@ -1,0 +1,102 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+<!-- Add Image form -->
+    <h1>Add Image</h1>
+  
+  <form id = "formNewImage" name = "formNewImage" #imageData = "ngForm" (ngSubmit)="addNewImage(imageData.value)">
+    <div class="form-group">
+      <label class="control-label">Image ID:</label>
+      <input type="text" class="form-control" name="img_id" id="img_id" placeholder="Image Id" ngModel #idInput required>
+      <label class="control-label">Image Name:</label>
+      <input type="text" class="form-control" name="img_name" id="img_name" placeholder="Image Name" ngModel  #nameInput required>
+    </div>
+
+
+    <p><input class="btn btn-primary" type="submit" value="Add Image" (click)="refresh()">
+  </form>
+
+<h3 *ngIf = "isAdded" >{{confirmationString}}</h3>
+
+<!-- Add Image form closes -->
+
+  <!-- <a class="btn btn-success" href="/add_image"> Add Image</a> -->
+  <hr>
+  <table class="table table-striped">
+    <tr>
+      <th>Image ID</th>
+      <th>Image Name</th>
+    </tr>
+    
+      <tr *ngFor="let image of images">
+        <td>{{image.img_id}}</td>
+        <td>{{image.img_name}}</td>
+
+      </tr>
+    
+  </table>
+
+<div role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">VM Provisioning</h2>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" >
+                        <div class="form-group">
+                            <label class="control-label">Image Name:</label>
+                            <!--<input type="text" class="form-control">-->
+                           
+                            <select id="inputState" class="form-control">
+                                <option value="0">Choose...</option>
+                                <option *ngFor="let image of images">
+                                    {{image.img_id}}. {{image.img_name}}
+                                </option>
+                            </select>
+
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">VM Name:</label>
+                            <input type="text" class="form-control">
+
+                        </div>
+
+                    </form>
+                </div>
+
+
+                <div class="modal-header">
+                    <h2 class="modal-title">Agent Provisioning</h2>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                  <label class="form-check-label" for="defaultCheck1">
+                                    SEP
+                                  </label>
+                            </div>
+                            <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                  <label class="form-check-label" for="defaultCheck2">
+                                    Putty.exe
+                                  </label>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <!--<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
